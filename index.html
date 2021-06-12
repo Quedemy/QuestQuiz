@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Maths Quiz App</title>
+</head>
+<body>
+    <div id="date">
+        <div id="date-time"></div>
+        <div id="timeOfDay"></div>
+    </div>
+    <div class="container-main">
+       <div id="frame-start">
+        <div class="container">
+            <h2 class="game-name label">Maths Quiz App</h2>
+            <div class="container-start">
+                <button id="start-game" class="btn-big">Start Game</button>
+                <button id="high-score" class="btn-big">High Score</button>
+            </div>
+        </div>
+       </div>
+        <!-- End of start page -->
+        <div id="frame-level" >
+            <div class="container" >
+                <h2 class="label">Select Dificulty Level</h2>
+                <div class="level">
+                    <button id="level1" class="btn-big">Level 1</button>
+                    <button id="level2" class="btn-big">Level 2</button>
+                    <button id="level3" class="btn-big">Level 3</button>
+                    <button id="level4" class="btn-big">Level 4</button>
+                    <button id="level5" class="btn-big">Level 5</button>
+                </div>
+                <!-- <div>
+                    <h3 id="remark"><span id="remember">Remember:</span>  can only click an option once in the question section. Only click an option when you are sure<You/h3>
+                </div> -->
+                </div>
+            </div>
+        <!-- End of level page -->
+        <div id="frame-question">
+            <div class="container frame-question" >
+                <div class="question-top-frame">
+                    <p class="show-questions frame-3-top">Question <span id="counter"></span> of <span id="total-question"></span></p>
+                    <p class="show-time-remaining frame-3-top">Time left: <span id="minutes"></span><span id="seconds"></span></p>
+                </div>
+                <div class="question-frame">
+                   <!--Question from js-->  
+                    
+                </div>
+                <div class="question-bottom-frame">
+                    <button id="next-question" class="btn-big">Next Question</button>
+                    <button id="quit-game" class="btn-big">Quit Game</button>
+                </div>
+            </div>
+        </div>
+        <!-- end of question frame -->
+        <div id="frame-score">
+            <div class="container">
+                <div class="scores">Score: <span id="mathScore"></span>%</div>
+                <div class="score-button">
+                    <button id="replay" class="btn-big">Replay</button>
+                    <button id="end-game" class="btn-big">End Game</button>
+                    <button id="high-score" class="btn-big">High Score</button>
+                </div>
+            </div>
+        </div>
+        <!-- end of scores frame -->
+    
+    </div>
+<script src="game2.js"></script>
+<script src="questions.js"></script>
+</body>
+</html>

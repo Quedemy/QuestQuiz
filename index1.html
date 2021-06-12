@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="quiz"></div>
+    <button id="submit">Submit Quiz</button>
+    <div id="results"></div>
+
+<script>
+    const quizContainer = document.getElementById('quiz');
+    const resultsContainer = document.getElementById('results');
+    const submitButton = document.getElementById('submit');
+
+    submitButton.addEventListener('click', showResults);
+     
+
+
+    const myQuestions = [
+            {
+                question: "Who invented JavaScript?",
+                answers: {
+                    a: "Douglas Crockford",
+                    b: "Sheryl Sandberg",
+                    c: "Brendan Eich"
+                },
+                correctAnswer: "c"
+            },
+            {
+                question: "Which one of these is a JavaScript package manager?",
+                answers: {
+                    a: "Node.js",
+                    b: "TypeScript",
+                    c: "npm"
+                },
+                correctAnswer: "c"
+            },
+            {
+                question: "Which tool can you use to ensure code quality?",
+                answers: {
+                    a: "Angular",
+                    b: "jQuery",
+                    c: "RequireJS",
+                    d: "ESLint"
+                },
+                correctAnswer: "d"
+            }
+        ];
+
+
+    function buildQuiz(){
+ //variable to score the html output
+        const output = [];
+    // for each question...
+        myQuestions.forEach(
+            (currentQuestion, questionNumber) => {
+
+                // variable to store the list of possible answers
+                const answers = [];
+
+                // and for each available answer...
+                for (letter in currentQuestion.answers) {
+
+                    // ...add an HTML radio button
+                    answers.push(
+                        `<label>
+            <input type="radio" name="question${questionNumber}" value="${letter}">
+            ${letter} :
+            ${currentQuestion.answers[letter]}
+          </label>`
+                    );
+                }
+            //build the answers into different paragraphs
+         let newAnswers =  answers.map((answer) =>{
+             return `<p class = "answer-each">${answer}</p>`
+            });
+            
+        // add this question and its answers to the output
+                output.push(
+                    `<div>
+                      <h3 id = "question-container" class="question"> ${currentQuestion.question} </h3>
+                        <div class="answers"> ${newAnswers.join("")} </div>  
+                        </div>`);
+
+        console.log(newAnswers)
+            return newAnswers;
+                
+            }
+        );
+
+        // finally combine our output list into one string of HTML and put it on the page
+        quizContainer.innerHTML = output.join('');
+        
+
+
+    };
+    function showResults() {
+
+            // gather answer containers from our quiz
+            const answerContainers = quizContainer.querySelectorAll('.answers');
+
+            // keep track of user's answers
+            let numCorrect = 0;
+
+            // for each question...
+            myQuestions.forEach((currentQuestion, questionNumber) => {
+
+                // find selected answer
+                const answerContainer = answerContainers[questionNumber];
+                const selector = `input[name=question${questionNumber}]:checked`;
+                const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+                console.log(questionNumber)
+                // if answer is correct
+                if (userAnswer === currentQuestion.correctAnswer) {
+                    // add to the number of correct answers
+                    numCorrect++;
+
+                    // color the answers green
+                    answerContainers[questionNumber].style.color = 'lightgreen';
+                }
+                // if answer is wrong or blank
+                else {
+                    // color the answers red
+                    answerContainers[questionNumber].style.color = 'red';
+                }
+            });
+            console.log(numCorrect)
+            // show number of correct answers out of total
+            resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
+        }
+    buildQuiz();
+
+</script>
+
+    
+</body>
+</html>
